@@ -9,9 +9,9 @@ const PORT = 5002;
 
 // Initialize ImageKit
 const imagekit = new ImageKit({
-  publicKey: 'public_UjYJw52KefpFNDwLgSX84uFPlnw=',
-  privateKey: 'private_Ah0UG/lM0+LaTvdurbXhnUy2ePk=',
-  urlEndpoint: 'https://ik.imagekit.io/4t0zibpdh/catalog-app/makrofis'
+  publicKey: 'public_hOcXMyRcMv1gxe/58WiZAFu/Y2w=',
+  privateKey: 'private_ok2x6nF3iWhV10GRjozYLoVU/kU=',
+  urlEndpoint: 'https://ik.imagekit.io/makrofis'
 });
 
 // Middleware
