@@ -11,7 +11,7 @@ const PORT = 5002;
 const imagekit = new ImageKit({
   publicKey: 'public_UjYJw52KefpFNDwLgSX84uFPlnw=',
   privateKey: 'private_Ah0UG/lM0+LaTvdurbXhnUy2ePk=',
-  urlEndpoint: 'https://ik.imagekit.io/4t0zibpdh/'
+  urlEndpoint: 'https://ik.imagekit.io/4t0zibpdh/makrofis'
 });
 
 // Middleware
