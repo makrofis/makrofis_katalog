@@ -10,71 +10,12 @@ import CatalogLayout from './components/Layout/CatalogLayout';
 import Home from './pages/Catalog/Home';
 import Category from './pages/Catalog/Category';
 import Product from './pages/Catalog/Product';
+import CategoriesPage from './pages/Catalog/CategoriesPage';
+import ProductsPage from './pages/Catalog/ProductsPage';
+import AboutPage from './pages/Catalog/AboutPage';
+import ContactPage from './pages/Catalog/ContactPage';
 
-// Enhanced theme with more customization
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: {
-      main: '#1976d2',
-      contrastText: '#ffffff',
-    },
-    secondary: {
-      main: '#dc004e',
-      contrastText: '#ffffff',
-    },
-    background: {
-      default: '#f9f9f9',
-      paper: '#ffffff',
-    },
-  },
-  typography: {
-    fontSize: 16,
-    fontFamily: [
-      '"Inter"',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    h1: {
-      fontWeight: 700,
-      fontSize: '2.5rem',
-    },
-    h2: {
-      fontWeight: 600,
-      fontSize: '2rem',
-    },
-    h3: {
-      fontWeight: 600,
-      fontSize: '1.75rem',
-    },
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: 'none',
-          fontWeight: 500,
-        },
-      },
-    },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: 12,
-          boxShadow: '0 4px 20px 0 rgba(0,0,0,0.05)',
-        },
-      },
-    },
-  },
-});
+// ... (keep your existing theme configuration)
 
 function App() {
   return (
@@ -92,6 +33,10 @@ function App() {
           {/* Catalog Routes */}
           <Route path="/" element={<CatalogLayout />}>
             <Route index element={<Home />} />
+            <Route path="categories" element={<CategoriesPage />} />
+            <Route path="products" element={<ProductsPage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="contact" element={<ContactPage />} />
             <Route path="category/:categoryName" element={<Category />} />
             <Route path="category/:categoryName/:subcategoryName" element={<Category />} />
             <Route path="product/:productId" element={<Product />} />

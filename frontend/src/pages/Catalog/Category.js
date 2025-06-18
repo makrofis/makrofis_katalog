@@ -1,7 +1,7 @@
-import { Box, Typography, Container, Grid, Card, CardMedia, CardContent, Button, Breadcrumbs, Link, Chip } from '@mui/material';
+import { Box, Typography, Container, Grid, Card, CardMedia, CardContent, Button, Breadcrumbs, Link, Chip, Divider } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getItemsByCategory } from '../../services/api';
 import HomeIcon from '@mui/icons-material/Home';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
@@ -20,6 +20,7 @@ const ProductCard = styled(Card)(({ theme }) => ({
   '&:hover': {
     transform: 'translateY(-5px)',
     boxShadow: theme.shadows[6],
+    cursor: 'pointer',
   },
 }));
 
@@ -29,10 +30,23 @@ const ProductImage = styled(CardMedia)({
   backgroundColor: '#f5f5f5',
 });
 
+const SubcategoryButton = styled(Button)(({ theme }) => ({
+  textTransform: 'none',
+  borderRadius: '20px',
+  padding: theme.spacing(1, 2),
+  margin: theme.spacing(0.5),
+  borderColor: theme.palette.divider,
+  '&:hover': {
+    backgroundColor: theme.palette.action.hover,
+    borderColor: theme.palette.primary.main,
+  },
+}));
+
 function Category() {
   const { categoryName, subcategoryName } = useParams();
   const [categoryData, setCategoryData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCategoryData = async () => {
@@ -48,6 +62,14 @@ function Category() {
 
     fetchCategoryData();
   }, [categoryName, subcategoryName]);
+
+  const handleSubcategoryClick = (subcategory) => {
+    navigate(`/category/${categoryName}/${subcategory}`);
+  };
+
+  const handleProductClick = (productId) => {
+    navigate(`/product/${productId}`);
+  };
 
   return (
     <Box>
@@ -78,6 +100,37 @@ function Category() {
       </CategoryHeader>
 
       <Container maxWidth="xl" sx={{ py: 2 }}>
+        {/* Subcategories Section */}
+        {!subcategoryName && categoryData?.subcategories?.length > 0 && (
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="h5" gutterBottom>
+              Subcategories
+            </Typography>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+              {categoryData.subcategories.map((subcat) => (
+                <SubcategoryButton
+                  key={subcat.name}
+                  variant="outlined"
+                  onClick={() => handleSubcategoryClick(subcat.name)}
+                  startIcon={
+                    subcat.imageUrl ? (
+                      <img 
+                        src={subcat.imageUrl} 
+                        alt={subcat.name} 
+                        style={{ width: 24, height: 24, borderRadius: '50%' }} 
+                      />
+                    ) : undefined
+                  }
+                >
+                  {subcat.name}
+                </SubcategoryButton>
+              ))}
+            </Box>
+            <Divider sx={{ my: 3 }} />
+          </Box>
+        )}
+
+        {/* Products Section */}
         {loading ? (
           <Box display="flex" justifyContent="center" alignItems="center" minHeight="200px">
             <Typography>Loading products...</Typography>
@@ -88,7 +141,7 @@ function Category() {
               <Grid container spacing={4}>
                 {categoryData.products.map((product) => (
                   <Grid item xs={12} sm={6} md={4} lg={3} key={product._id}>
-                    <ProductCard>
+                    <ProductCard onClick={() => handleProductClick(product._id)}>
                       <ProductImage
                         component="img"
                         image={product.images?.[0] || 'https://source.unsplash.com/random/300x300/?product'}
@@ -108,7 +161,10 @@ function Category() {
                           size="small"
                           fullWidth
                           variant="contained"
-                          href={`/product/${product._id}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleProductClick(product._id);
+                          }}
                         >
                           View Details
                         </Button>
