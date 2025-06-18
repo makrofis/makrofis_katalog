@@ -46,8 +46,7 @@ const categorySchema = new mongoose.Schema({
     name: { type: String, required: true },
     imageUrl: String
   }],
-  imageUrl: String,
-  isFeatured: { type: Boolean, default: false }
+  imageUrl: String
 }, { timestamps: true });
 
 const itemSchema = new mongoose.Schema({
@@ -59,9 +58,6 @@ const itemSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   specs: [String],
   images: [String],
-  isFeatured: { type: Boolean, default: false },
-  rating: { type: Number, default: 0 },
-  reviewCount: { type: Number, default: 0 }
 }, { timestamps: true });
 
 // Models
@@ -71,7 +67,6 @@ const Item = mongoose.model('Item', itemSchema);
 // Create indexes
 itemSchema.index({ category: 1, subcategory: 1 });
 categorySchema.index({ name: 1 });
-itemSchema.index({ name: 'text', description: 'text' });
 
 // API Endpoints
 
@@ -83,39 +78,6 @@ app.get('/api/items', async (req, res) => {
   } catch (err) {
     res.status(500).json({ 
       message: 'Failed to fetch items',
-      error: err.message 
-    });
-  }
-});
-
-app.get('/api/items/featured', async (req, res) => {
-  try {
-    const featuredItems = await Item.find({ isFeatured: true }).limit(8);
-    res.json(featuredItems);
-  } catch (err) {
-    res.status(500).json({ 
-      message: 'Failed to fetch featured items',
-      error: err.message 
-    });
-  }
-});
-
-app.get('/api/items/search', async (req, res) => {
-  try {
-    const query = req.query.q;
-    if (!query) {
-      return res.status(400).json({ message: 'Search query is required' });
-    }
-
-    const results = await Item.find(
-      { $text: { $search: query } },
-      { score: { $meta: "textScore" } }
-    ).sort({ score: { $meta: "textScore" } });
-
-    res.json(results);
-  } catch (err) {
-    res.status(500).json({ 
-      message: 'Search failed',
       error: err.message 
     });
   }
@@ -237,18 +199,6 @@ app.get('/api/categories', async (req, res) => {
     res.json(categories);
   } catch (err) {
     res.status(500).json({ message: err.message });
-  }
-});
-
-app.get('/api/categories/featured', async (req, res) => {
-  try {
-    const featuredCategories = await Category.find({ isFeatured: true }).limit(6);
-    res.json(featuredCategories);
-  } catch (err) {
-    res.status(500).json({ 
-      message: 'Failed to fetch featured categories',
-      error: err.message 
-    });
   }
 });
 

@@ -6,8 +6,6 @@ const API = axios.create({
   maxBodyLength: 50 * 1024 * 1024, // 50MB
   headers: {
     'Content-Type': 'application/json',
-    // Add any auth headers if needed
-    // 'Authorization': `Bearer ${localStorage.getItem('token')}`
   }
 });
 
@@ -28,19 +26,27 @@ API.interceptors.response.use(
   }
 );
 
+// Category Endpoints
 export const createCategory = (category) => API.post('/categories', category);
-export const createItem = (item) => API.post('/items', item);
 export const getCategories = () => API.get('/categories');
 export const updateCategory = (id, category) => API.put(`/categories/${id}`, category);
 export const deleteCategory = (id) => API.delete(`/categories/${id}`);
 
+// Item Endpoints
+export const createItem = (item) => API.post('/items', item);
 export const getItems = () => API.get('/items');
+export const getItem = (id) => API.get(`/items/${id}`);
 export const updateItem = (id, itemData) => API.put(`/items/${id}`, itemData);
 export const deleteItem = (id) => API.delete(`/items/${id}`);
 
+// Catalog Endpoints
 export const getItemsByCategory = (categoryName, subcategoryName) => 
   API.get(`/items/${categoryName}/${subcategoryName || ''}`);
 
+export const getFeaturedProducts = () => API.get('/items/featured');
+export const searchProducts = (query) => API.get(`/items/search?q=${query}`);
+
+// Image Upload Endpoints
 export const uploadImages = (formData) => {
   return API.post('/upload', formData, {
     headers: {
