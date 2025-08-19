@@ -2,7 +2,7 @@ import { Box, Typography, Container, Grid, Card, CardMedia, CardContent, Button,
 import { styled } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getItemsByCategory } from '../services/api';
+import { getItemsByCategory } from '../../services/api';
 import HomeIcon from '@mui/icons-material/Home';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
