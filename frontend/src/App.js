@@ -1,3 +1,4 @@
+// App.js - Kontrol edin
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,7 +16,10 @@ import ProductsPage from './pages/Catalog/ProductsPage';
 import AboutPage from './pages/Catalog/AboutPage';
 import ContactPage from './pages/Catalog/ContactPage';
 
-// ... (keep your existing theme configuration)
+// Tema ayarlarınızı buraya ekleyin
+const theme = createTheme({
+  // Tema konfigürasyonu
+});
 
 function App() {
   return (

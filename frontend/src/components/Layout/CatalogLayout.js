@@ -1,8 +1,9 @@
+// src/components/Layout/CatalogLayout.js
 import React from 'react';
 import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
-import Header from '../components/Catalog/Header';
-import Footer from '../components/Catalog/Footer';
+import Header from '../Catalog/Header';
+import Footer from '../Catalog/Footer';
 
 export default function CatalogLayout() {
   return (

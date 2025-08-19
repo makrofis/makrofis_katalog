@@ -12,7 +12,8 @@ import {
   ListItemText,
   useTheme,
   useMediaQuery,
-  Box
+  Box,
+  Badge
 } from '@mui/material';
 import {
   Menu as MenuIcon,
@@ -20,19 +21,28 @@ import {
   ShoppingCart as ShoppingCartIcon,
   Person as PersonIcon
 } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Header() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
+  const location = useLocation();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
     setDrawerOpen(open);
+  };
+
+  const handleSearch = (e) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery('');
+    }
   };
 
   const menuItems = [
@@ -59,7 +69,8 @@ export default function Header() {
             flexGrow: 1, 
             display: 'flex', 
             alignItems: 'center',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            fontWeight: 'bold'
           }}
           onClick={() => navigate('/')}
         >
@@ -85,6 +96,7 @@ export default function Header() {
                       button 
                       key={item.text}
                       onClick={() => navigate(item.path)}
+                      selected={location.pathname === item.path}
                     >
                       <ListItemText primary={item.text} />
                     </ListItem>
@@ -100,6 +112,13 @@ export default function Header() {
                 key={item.text} 
                 color="inherit"
                 onClick={() => navigate(item.path)}
+                variant={location.pathname === item.path ? "outlined" : "text"}
+                sx={{ 
+                  borderRadius: 2,
+                  ...(location.pathname === item.path && { 
+                    backgroundColor: 'rgba(255, 255, 255, 0.15)' 
+                  })
+                }}
               >
                 {item.text}
               </Button>
@@ -120,11 +139,16 @@ export default function Header() {
                 placeholder="Ürün veya kategori ara..."
                 sx={{ color: 'white', width: 200 }}
                 inputProps={{ 'aria-label': 'search' }}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={handleSearch}
               />
             </Box>
             
             <IconButton color="inherit">
-              <ShoppingCartIcon />
+              <Badge badgeContent={3} color="secondary">
+                <ShoppingCartIcon />
+              </Badge>
             </IconButton>
             
             <IconButton color="inherit">

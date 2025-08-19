@@ -1,4 +1,3 @@
-// Home.js - Güncellenmiş Catalog Ana Sayfası
 import React, { useState, useEffect } from 'react';
 import {
   Box,
@@ -12,20 +11,16 @@ import {
   Rating,
   Chip,
   IconButton,
-  useTheme,
-  useMediaQuery
+  CircularProgress
 } from '@mui/material';
 import {
   ShoppingCart,
   Favorite,
-  Visibility,
-  Search
+  Visibility
 } from '@mui/icons-material';
-import { getItems, getCategories } from '../../services/api';
+import { getItems, getCategories } from '../../../services/api';
 
 export default function Home() {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -55,7 +50,7 @@ export default function Home() {
   if (loading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" minHeight="60vh">
-        <Typography>Yükleniyor...</Typography>
+        <CircularProgress />
       </Box>
     );
   }
@@ -192,29 +187,6 @@ export default function Home() {
             <Typography variant="h4" component="h2">
               Öne Çıkan Ürünler
             </Typography>
-            
-            <Box sx={{ display: 'flex', gap: 1 }}>
-              <Button 
-                variant="outlined" 
-                size="small"
-                sx={{ 
-                  minWidth: 'auto',
-                  borderRadius: 2
-                }}
-              >
-                Tüm Kategoriler
-              </Button>
-              <Button 
-                variant="outlined" 
-                size="small"
-                sx={{ 
-                  minWidth: 'auto',
-                  borderRadius: 2
-                }}
-              >
-                Varsayılan Sıralama
-              </Button>
-            </Box>
           </Box>
           
           <Grid container spacing={3}>
@@ -243,7 +215,8 @@ export default function Home() {
                         left: 16, 
                         bgcolor: '#ff006e', 
                         color: 'white',
-                        fontWeight: 'bold'
+                        fontWeight: 'bold',
+                        zIndex: 1
                       }} 
                     />
                   )}
