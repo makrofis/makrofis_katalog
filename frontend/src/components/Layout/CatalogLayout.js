@@ -1,33 +1,19 @@
-import { Box, Container, CssBaseline } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import CatalogHeader from '../Navigation/CatalogHeader';
-import CatalogFooter from '../Navigation/CatalogFooter';
+import React from 'react';
+import { Box } from '@mui/material';
+import { Outlet } from 'react-router-dom';
+import Header from '../components/Catalog/Header';
+import Footer from '../components/Catalog/Footer';
 
-const MainContent = styled(Box)(({ theme }) => ({
-  minHeight: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  backgroundColor: theme.palette.background.default,
-}));
-
-const ContentWrapper = styled(Box)({
-  flex: 1,
-  paddingTop: '64px', // Space for header
-});
-
-function CatalogLayout({ children }) {
+export default function CatalogLayout() {
   return (
-    <MainContent>
-      <CssBaseline />
-      <CatalogHeader />
-      <ContentWrapper>
-        <Container maxWidth="xl">
-          {children}
-        </Container>
-      </ContentWrapper>
-      <CatalogFooter />
-    </MainContent>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <Header />
+      
+      <Box component="main" sx={{ flexGrow: 1 }}>
+        <Outlet />
+      </Box>
+
+      <Footer />
+    </Box>
   );
 }
-
-export default CatalogLayout;
