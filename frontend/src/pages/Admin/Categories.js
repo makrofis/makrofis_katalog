@@ -23,7 +23,7 @@ import {
 } from '@mui/material';
 import { Add, Edit, Delete } from '@mui/icons-material';
 import CategoryForm from '../../components/Admin/CategoryForm';
-import { getCategories, createCategory, updateCategory, deleteCategory } from '../services/api';
+import { getCategories, createCategory, updateCategory, deleteCategory } from '../../services/api';
 
 export default function Categories() {
   const theme = useTheme();

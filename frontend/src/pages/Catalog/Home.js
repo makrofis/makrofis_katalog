@@ -18,7 +18,7 @@ import {
   Favorite,
   Visibility
 } from '@mui/icons-material';
-import { getItems, getCategories } from '../../../services/api';
+import { getItems, getCategories } from '../../services/api';
 
 export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
