@@ -126,8 +126,8 @@ const CategoryGrid = ({ categories, onCategorySelect }) => {
                   variant="h6" 
                   component="div" 
                   sx={{ 
-                    fontWeight: 600,
-                    lineHeight: 1.3,
+                    fontWeight: 900,
+                    lineHeight: 1.6,
                     display: '-webkit-box',
                     WebkitLineClamp: 2, 
                     WebkitBoxOrient: 'vertical',
