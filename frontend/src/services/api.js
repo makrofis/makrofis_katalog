@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL || 'https://katalog-2uel.onrender.com/api',
+  baseURL: process.env.REACT_APP_API_BASE_URL || 'https://makrofis-katalog-vjsa.onrender.com/api',
   maxContentLength: 50 * 1024 * 1024, // 50MB
   maxBodyLength: 50 * 1024 * 1024, // 50MB
   timeout: 30000, // 30 saniye timeout

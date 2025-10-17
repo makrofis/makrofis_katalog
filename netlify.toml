@@ -8,4 +8,4 @@
   status = 200
 
 [context.production.environment]
-  REACT_APP_API_BASE_URL = "https://katalog-2uel.onrender.com/api"
+  REACT_APP_API_BASE_URL = "https://makrofis-katalog-vjsa.onrender.com/api"

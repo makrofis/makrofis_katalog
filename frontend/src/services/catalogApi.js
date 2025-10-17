@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://katalog-2uel.onrender.com';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://makrofis-katalog-vjsa.onrender.com';
 
 // API instance oluştur
 const api = axios.create({
