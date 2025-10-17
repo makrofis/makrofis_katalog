@@ -54,7 +54,7 @@ const Dashboard = () => {
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
-        Ravinzo Katalog Admin Panel
+        Makrofis Katalog Admin Panel
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
