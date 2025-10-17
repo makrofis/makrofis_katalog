@@ -105,25 +105,7 @@ const CategoryGrid = ({ categories, onCategorySelect }) => {
                     e.target.src = '/placeholder-category.jpg';
                   }}
                 />
-                {category.subcategories?.length > 0 && (
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: 8,
-                      right: 8,
-                      backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                      color: 'white',
-                      px: 1,
-                      py: 0.5,
-                      borderRadius: 1,
-                      fontSize: '0.75rem',
-                      fontWeight: 600,
-                      zIndex: 1
-                    }}
-                  >
-                    {category.subcategories.length} alt kategori
-                  </Box>
-                )}
+               
               </Box>
 
               {/* METİN ALANI */}
