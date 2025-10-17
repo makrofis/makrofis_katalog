@@ -353,7 +353,7 @@ const CatalogFrontend = () => {
 
   return (
     <Box sx={{ flexGrow: 1, minHeight: '100vh' }}>
-      <AppBar position="sticky" elevation={2} sx={{ backgroundColor: '#383E42' }}>
+      <AppBar position="sticky" elevation={2} sx={{ backgroundColor: '#ef8732' }}>
         <Toolbar>
           {view !== 'home' && (
             <IconButton edge="start" color="inherit" onClick={handleBack} sx={{ mr: 2 }}>
