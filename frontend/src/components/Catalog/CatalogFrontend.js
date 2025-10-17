@@ -195,9 +195,7 @@ const CatalogFrontend = () => {
           <Typography variant="h4" gutterBottom sx={{ fontWeight: 300 }}>
             {currentCategory.name}
           </Typography>
-          <Typography variant="body1" color="text.secondary">
-            {currentCategory.subcategories.length} alt kategori
-          </Typography>
+         
         </Box>
 
         <Grid container spacing={3} justifyContent="center">
