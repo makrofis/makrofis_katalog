@@ -282,21 +282,7 @@ const CatalogFrontend = () => {
                     {subcategory.name}
                   </Typography>
 
-                  <Typography 
-                    variant="body2" 
-                    color="text.secondary"
-                    sx={{
-                      display: '-webkit-box',
-                      WebkitLineClamp: 1,
-                      WebkitBoxOrient: 'vertical',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis'
-                    }}
-                  >
-                    {subcategory.subcategories?.length > 0
-                      ? `${subcategory.subcategories.length} alt kategori`
-                      : 'Ürünleri görüntüle'}
-                  </Typography>
+                 
                 </CardContent>
               </Card>
             </Grid>
